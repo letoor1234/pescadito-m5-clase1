@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Holiwi UwU</title>
+  </head>
+  <body>
+    <h1>Holiwi de NOVO</h1>
+    <span>clicks: </span><span id="counter">0</span>
+    <div style="position: relative">
+      <div id="holiwi"></div>
+    </div>
+
+    <script>
+      // Contador de clicks
+      var counter = 0;
+
+      const spanCounter = document.getElementById("counter");
+
+      // body para traquear los clicks
+      const body = document.getElementsByTagName("body")[0];
+
+      body.style.width = "100vw";
+      body.style.height = "100vh";
+      body.onclick = function () {
+        counter++;
+        spanCounter.innerHTML = counter + 1;
+      };
+
+      // pescadito
+      const myDiv = document.getElementById("holiwi");
+
+      // escribimos los estilos base de los pescaditos
+      var styles = {
+        width: "5em",
+        height: "5em",
+        borderRadius: "100% 100% 0",
+        backgroundColor: "#ff0000",
+        transition: "all 1s",
+        position: "absolute",
+      };
+
+      // iteramos los pares de nuestro objeto de estilos
+      // para aplicarlos al pescadito
+      Object.entries(styles).forEach(function ([key, value]) {
+        myDiv.style[key] = value;
+      });
+
+      // Rotamos el pescadito de forma aleatoria
+      const rotation = () => {
+        var grados = Math.random() * 3.6 * 100;
+        myDiv.style.transform = `rotate(${grados}deg)`;
+      };
+
+      // Movemos el pescadito de forma aleatoria
+      const motion = () => {
+        var top = Math.random() * 500;
+        var left = Math.random() * 500;
+
+        myDiv.style.top = top + "px";
+        myDiv.style.left = left + "px";
+      };
+      // Ejecutamos rotacion y movimiento en intervalos
+      setInterval(rotation, 1000);
+      setInterval(motion, 600);
+
+      // Funcion para alertar cuando atrapamos al pescadito
+      myDiv.onclick = function (evt) {
+        alert(
+          "Felicitaciones! Has atrapado el pescadito en " + counter + " clicks!"
+        );
+        counter = 0;
+        spanCounter.innerHTML = 0;
+      };
+    </script>
+  </body>
+</html>
